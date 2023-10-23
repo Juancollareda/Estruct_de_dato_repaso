@@ -16,7 +16,17 @@ class Grafo:
         
         # Crear un grafo para representar archivos y dependencias
 grafo = Grafo()
+def vecindad_derecha(grafo, nodo):
+    if nodo not in grafo.nodos:
+        raise ValueError("El nodo no está presente en el grafo.")
 
+    vecinos_derechos = []
+
+    for origen, destinos in grafo.arcos.items():
+        if nodo == origen:
+            vecinos_derechos.extend(destinos)
+
+    return vecinos_derechos
 def vecindad_izquierda(grafo, nodo):
     vecinos_izquierdos = []
 
@@ -48,16 +58,18 @@ def crear_grafo_desde_diccionario(diccionario):
 
 def main():
     grafo = {
-    "A": ["B", "C"],
-    "B": ["A", "C"],
-    "C": ["B"]
+    "A": ["B"],
+    "B": ["C"],
+    "C": []
 }
     mi_grafo = crear_grafo_desde_diccionario(grafo)
     nodo_de_interes = "A"
     vecindad_izq = vecindad_izquierda(mi_grafo, nodo_de_interes)
+    vecindad_der = vecindad_derecha(mi_grafo, nodo_de_interes)
     vecindad_ideal_izq = vecindad_ideal_izquierda(mi_grafo, nodo_de_interes)
     print(f"Vecindad Izquierda de {nodo_de_interes}: {vecindad_izq}")
     print(f"Vecindad Izquierda  ideal {nodo_de_interes}: {vecindad_ideal_izq}")
+    print(f"Vecindad derecha de {nodo_de_interes}: {vecindad_der}")
 
 
 main()
