@@ -1,0 +1,28 @@
+Algoritmo GradoNoRecursivoDeArbol(nodo):
+    Si el nodo es nulo:
+        Devolver 0  # Un nodo nulo no tiene hijos
+
+    Declarar cola como una cola vacía
+    Agregar el nodo a la cola
+
+    Declarar gradoMaximo = 0
+
+    Mientras la cola no esté vacía:
+        nodoActual = Quitar el nodo del frente de la cola
+        Si el número de hijos de nodoActual es mayor que gradoMaximo:
+            gradoMaximo = número de hijos de nodoActual
+        Para cada hijo en los hijos de nodoActual:
+            Agregar el hijo a la cola
+
+    Devolver gradoMaximo
+
+# Ejemplo de uso:
+raiz = Nodo(1)  # Crea un nodo raíz con valor 1
+raiz.agregarHijo(Nodo(2))
+raiz.agregarHijo(Nodo(3))
+raiz.hijos[0].agregarHijo(Nodo(4))
+raiz.hijos[0].agregarHijo(Nodo(5))
+raiz.hijos[1].agregarHijo(Nodo(6))
+
+grado = GradoNoRecursivoDeArbol(raiz)
+Imprimir("El grado del árbol es: " + grado)

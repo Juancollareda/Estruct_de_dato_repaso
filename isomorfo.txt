@@ -1,0 +1,46 @@
+Función SonIsomorfos(Grafo1, Grafo2):
+    # Verificar si el número de nodos es el mismo en ambos grafos
+    Si el número de nodos en Grafo1 es diferente del número de nodos en Grafo2, entonces
+        Retornar Falso  # Los grafos no pueden ser isomorfos
+    Fin Si
+    
+    # Función para verificar si dos nodos son adyacentes en un grafo usando el operador "Paso"
+    Función SonAdyacentesConPaso(Grafo, Nodo1, Nodo2):
+        Si 𝜌(Grafo, Nodo1, Nodo2) == Paso, entonces
+            Retornar Verdadero
+        Sino
+            Retornar Falso
+        Fin Si
+    Fin Función
+    
+    # Función para encontrar una biyección válida utilizando el operador "Camino"
+    Función EncontrarBiyecciónConCamino(Grafo1, Grafo2):
+        # Inicializar una biyección vacía
+        Biyección = {}
+        
+        # Para cada par de nodos en Grafo1, verificar si existe un "Camino" en Grafo2
+        Para cada Nodo1 en Grafo1:
+            Para cada Nodo2 en Grafo2:
+                Si 𝜔(Grafo2, Biyección[Nodo1], Nodo2) == Camino, entonces
+                    # Asignar la correspondencia en la biyección
+                    Biyección[Nodo1] = Nodo2
+                    Romper  # Salir del bucle interno
+                Fin Si
+            Fin Para
+        Fin Para
+        
+        # Verificar si la biyección es válida, es decir, si mapea todos los nodos de Grafo1 a Grafo2
+        Si el número de nodos en Grafo1 es igual al número de nodos mapeados en la biyección, entonces
+            Retornar Verdadero  # Los grafos son isomorfos
+        Sino
+            Retornar Falso  # Los grafos no son isomorfos
+        Fin Si
+    Fin Función
+    
+    # Usar EncontrarBiyecciónConCamino para intentar mapear los nodos de Grafo1 a los de Grafo2
+    Si EncontrarBiyecciónConCamino(Grafo1, Grafo2) es exitoso, entonces
+        Retornar Verdadero  # Los grafos son isomorfos
+    Sino
+        Retornar Falso  # Los grafos no son isomorfos
+    Fin Si
+Fin Función
